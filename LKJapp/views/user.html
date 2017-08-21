@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <!--beego会首先解析TplNames指定的文件，获取内容赋值给header，然后最后渲染本html文件-->
+        {{template "header"}} <!--导航栏设计，固定在顶端-->
+        <title>用户管理 - LKJ 云盘</title>
+    </head>
+
+    <body>
+        <div class="navbar navbar-default navbar-fixed-top navbar-inverse">
+            <div class="container">
+                <!--导航栏内容，由于有登录与退出的变化，增加“.”可以实时响应变化-->
+                {{template "navbar" .}}
+            </div>
+        </div>
+
+        <!-- 
+        ******************************************************************************************************
+        ******************************************************************************************************
+        ******************************************************************************************************
+        ******************************************************************************************************
+        ******************************************************************************************************
+        -->
+
+        <!-- 用户管理界面 -->
+        <div class="container" style="margin:70px auto">
+            <h1 id="user-manage" class="page-header">用户管理列表</h1>
+
+            <!-- Single button -->
+            <div class="pull-right">
+                <a href="#user-manage"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>&nbsp;&nbsp;&nbsp;
+                <a href="#category-manage"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span></a>&nbsp;&nbsp;&nbsp;
+                <a href="#topic-manage"><span class="glyphicon glyphicon-file" aria-hidden="true"></span></a>
+            </div>
+
+            <form class="form-inline" method="Get" action="/user">
+                <!--action是跳转页面的地址-->
+                <!--把标签和控件放在一个带有 class .form-group 的 <div> 中。这是获取最佳间距所必需的。-->
+                <div class="form-group">
+                    <label>用户名称</label> <!--设置一个id值来检查用户是否是空输入-->
+                    <input id="username" type="text" class="form-control" placeholder="输入用户名称" name="username">
+                </div>
+                    <!-- 按键事件调用JavaScript的函数 -->
+                <input type="hidden" name="userop" value="add">
+                <button type="submit" class="btn btn-primary" onclick="return checkInput();">添加</button>
+
+                <p>&nbsp;</p><!-- （空一行） -->
+            </form>
+
+            <!-- JavaScript最主流的Web应用是创建动态网页（弹出框等） -->
+            <script type="text/javascript">
+            // 定义确认输入是否为空的函数，在提交登录按键事件中调用该函数
+              function checkInput() {
+                var username = document.getElementById("username")
+                if (username.value.length == 0) { //确保输入不为空
+                  alert("请输入用户名称");
+                  return false
+                }
+                return true //如果两个都有输入，就不需要警告窗口
+              }
+            </script> <!-- 使用响应式表格框架 --> 
+            <table class="table table-hover">
+                <thead>
+                    <tr class="info">
+                        <th><span class="glyphicon glyphicon-user" aria-hidden="true"></span></th>
+                        <th>用户名称</th>
+                        <th>用户密码</th>
+                        <th>已使用容量</th>
+                        <th>总容量</th>
+                        <th>最近一次登录时间</th>
+                        <th>登录次数</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{range .Users}}
+                    <tr>
+                        <th>{{.Id}}</th>
+                        <th>{{.Name}}</th>
+                        <th>{{.Pwd}}</th>
+                        <th>{{.UseCapacity}}&nbsp;Byte</th>
+                        <th>{{.Capacity}}&nbsp;Byte</th>
+                        <th>{{.LastLoginTime}}</th>
+                        <th>{{.LoginCount}}</th>
+                        <th>
+                            <!-- 操作是一个跳转链接，并且给网页变量赋值 -->
+                            <a href="/user?userop=del&amp;userid={{.Id}}"><span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>&nbsp;删除</a><!-- 删除 -->
+                        </th>
+                    </tr>
+                    {{end}}
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 
+        ******************************************************************************************************
+        ******************************************************************************************************
+        ******************************************************************************************************
+        ******************************************************************************************************
+        ******************************************************************************************************
+        -->
+
+        <!-- 文件夹管理界面 -->
+        <div class="container" style="margin:70px auto">
+            <h1 id="category-manage" class="page-header">文件夹管理列表</h1>
+
+            <!-- Single button -->
+            <div class="pull-right">
+                <a href="#user-manage"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>&nbsp;&nbsp;&nbsp;
+                <a href="#category-manage"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span></a>&nbsp;&nbsp;&nbsp;
+                <a href="#topic-manage"><span class="glyphicon glyphicon-file" aria-hidden="true"></span></a>
+            </div>
+            
+            <form class="form-inline" method="Get" action="/user">
+                <!--action是跳转页面的地址-->
+                <!--把标签和控件放在一个带有 class .form-group 的 <div> 中。这是获取最佳间距所必需的。-->
+                <div class="form-group">
+                    <label>文件夹名称</label> <!--设置一个id值来检查用户是否是空输入-->
+                    <input id="name" type="text" class="form-control" placeholder="输入文件夹名称" name="name">
+                </div>
+
+                <!-- 按键事件调用JavaScript的函数 -->
+                <input type="hidden" name="op" value="addcate">
+                <button type="submit" class="btn btn-primary" onclick="return checkInput();">新建文件夹</button>
+
+                <p>&nbsp;</p><!-- （空一行） -->
+            </form>
+
+            <!-- JavaScript最主流的Web应用是创建动态网页（弹出框等） -->
+            <script type="text/javascript">
+            // 定义确认输入是否为空的函数，在提交登录按键事件中调用该函数
+              function checkInput() {
+                var username = document.getElementById("name")
+                if (username.value.length == 0) { //确保输入不为空
+                  alert("请输入文件夹名称");
+                  return false
+                }
+                return true //如果两个都有输入，就不需要警告窗口
+              }
+            </script> <!-- 使用响应式表格框架 --> 
+            <table class="table table-hover">
+                <thead>
+                    <tr class="info">
+                        <th><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span></th>
+                        <th>文件名</th>
+                        <th>上一层文件夹ID</th>
+                        <th>文件夹用户</th>
+                        <th>大小</th>
+                        <th>最后修改时间</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{range .Categories}}
+                    <tr>
+                        <th>{{.Id}}</th>
+                        <th>{{.Title}}</th>
+                        <th>{{.Cid}}</th>
+                        <th>{{.Uname}}</th>
+                        <th>{{.Size}}&nbsp;Byte</th>
+                        <th>{{.Updated}}</th>
+                        <th>
+                          <!-- 操作是一个跳转链接，并且给网页变量赋值 -->
+                          <a href="/user?op=del&amp;id={{.Id}}"><span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>&nbsp;删除</a>
+                        </th>
+                    </tr>
+                    {{end}}
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 
+        ******************************************************************************************************
+        ******************************************************************************************************
+        ******************************************************************************************************
+        ******************************************************************************************************
+        ******************************************************************************************************
+        -->
+
+        <!-- 文件夹管理界面 -->
+        <div class="container" style="margin:70px auto">
+            <h1 id="topic-manage" class="page-header">文件管理列表</h1>
+
+            <!-- Single button -->
+            <div class="pull-right">
+                <a href="#user-manage"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>&nbsp;&nbsp;&nbsp;
+                <a href="#category-manage"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span></a>&nbsp;&nbsp;&nbsp;
+                <a href="#topic-manage"><span class="glyphicon glyphicon-file" aria-hidden="true"></span></a>
+            </div>
+            
+            <form class="form-inline" method="Get" action="/user">
+                <!--action是跳转页面的地址-->
+                <!--把标签和控件放在一个带有 class .form-group 的 <div> 中。这是获取最佳间距所必需的。-->
+                <div class="form-group">
+                    <label>文件名称</label> <!--设置一个id值来检查用户是否是空输入-->
+                    <input id="name" type="text" class="form-control" placeholder="输入文件名称" name="name">
+                </div>
+
+                <!-- 按键事件调用JavaScript的函数 -->
+                <input type="hidden" name="op" value="addtopic">
+                <button type="submit" class="btn btn-primary" onclick="return checkInput();">新建空文件</button>
+
+                <p>&nbsp;</p><!-- （空一行） -->
+            </form>
+
+            <!-- JavaScript最主流的Web应用是创建动态网页（弹出框等） -->
+            <script type="text/javascript">
+            // 定义确认输入是否为空的函数，在提交登录按键事件中调用该函数
+              function checkInput() {
+                var username = document.getElementById("name")
+                if (username.value.length == 0) { //确保输入不为空
+                  alert("请输入文件名称");
+                  return false
+                }
+                return true //如果两个都有输入，就不需要警告窗口
+              }
+            </script> <!-- 使用响应式表格框架 --> 
+            <table class="table table-hover">
+                <thead>
+                    <tr class="info">
+                        <th><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span></th>
+                        <th>文件名</th>
+                        <th>上一层文件夹ID</th>
+                        <th>文件夹用户</th>
+                        <th>大小</th>
+                        <th>最后修改时间</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{range .Topics}}
+                    <tr>
+                        <th>{{.Id}}</th>
+                        <th>{{.Title}}</th>
+                        <th>{{.Cid}}</th>
+                        <th>{{.Uname}}</th>
+                        <th>{{.Size}}&nbsp;Byte</th>
+                        <th>{{.Updated}}</th>
+                        <th>
+                          <!-- 操作是一个跳转链接，并且给网页变量赋值 -->
+                          <a href="/category?op=deltopic&amp;tid={{.Id}}"><span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>&nbsp;删除</a>&nbsp;&nbsp;&nbsp;
+                          <a href="/attachment/[LKJyunpan.{{.Uname}}.{{.CidString}}]{{.Title}}"><span class="glyphicon glyphicon-save" aria-hidden="true"></span>&nbsp;下载</a>
+                        </th>
+                    </tr>
+                    {{end}}
+                </tbody>
+            </table>
+        </div>
+
+
+        <script type="text/javascript" src="http://cdn.staticfile.org/jquery/2.1.1-rc2/jquery.min.map"></script>
+        <script type="text/javascript" src="static/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="static/js/jquery.min.js"></script>
+    </body>
+</html>

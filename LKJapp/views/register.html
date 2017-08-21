@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    	<!--beego会首先解析TplNames指定的文件，获取内容赋值给header，然后最后渲染本html文件-->
+		{{template "header"}}
+    	<title>注册 - 我的 LKJ 云盘</title>
+	</head>
+
+	<body>
+		<!--上下的距离是100，auto的意思是左右的距离自动，这样就会居中了-->
+		<div class="container" style="border-bottom:50% ;height:500px;width:500px;background:white;margin:50px auto">
+			<form method="POST" action="/register"><!--action是跳转页面的地址-->
+			  <!--把标签和控件放在一个带有 class .form-group 的 <div> 中。这是获取最佳间距所必需的。-->
+			    <div class="form-group">
+			        <label>账号</label>
+			        <!--设置一个id值来检查用户是否是空输入-->
+			        <input id="uname" class="form-control" placeholder="输入账号" name="uname">
+			    </div>
+			    <div class="form-group">
+			        <label>密码</label>
+			        <input id="pwd" type="password" class="form-control" placeholder="输入密码" name="pwd">
+			    </div>
+			    <div class="form-group">
+			        <label>确认密码</label>
+			        <input id="pwdagain" type="password" class="form-control" placeholder="请再次输入密码" name="pwdagain">
+			    </div>
+			    
+			    <!-- 按键事件调用JavaScript的函数 -->
+			    <button type="submit" class="btn btn-default" onclick="return checkInput();">注册</button>
+			    <button class="btn btn-default" onclick="return backToHome();">返回</button>
+			</form>
+
+			<!-- JavaScript最主流的Web应用是创建动态网页（弹出框等） -->
+			<script type="text/javascript">
+				// 定义确认输入是否为空的函数，在提交登录按键事件中调用该函数
+				function checkInput() {
+					var uname = document.getElementById("uname")
+					if (uname.value.length == 0) { //确保输入不为空
+						alert("请输入账号");
+						return false
+					}
+					var pwd = document.getElementById("pwd")
+					if (pwd.value.length == 0) { //确保输入不为空
+						alert("请输入密码");
+						return false
+					}
+					var pwdagain = document.getElementById("pwdagain")
+					if (pwdagain.value.length == 0) { //确保输入不为空
+						alert("请再次输入密码");
+						return false
+					}
+					if (pwd.value != pwdagain.value) { //如果三个都有输入，再确认一下密码有没有输错
+						alert("两次密码不一致");
+						return false
+					}
+					alert("注册成功，恭喜你获得新人2GB容量大礼包！赶紧登录一下吧！");
+					return true 
+				}
+
+				// 定义返回按键事件需要调用的函数，返回的值永远是false，不会导致表单被提交
+				function backToHome() {
+					window.location.href = "/";//定向回首页
+					return false
+				}
+			</script>
+		</div>
+    </body>
+</html>
+

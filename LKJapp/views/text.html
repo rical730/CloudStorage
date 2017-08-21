@@ -1,0 +1,86 @@
+<html>
+	<head>
+		<title></title>
+	</head>
+	<body>
+		<div id="mainPanel">
+			<div id="mainTabs">
+				<div id="toolbar" class="cmd-panel">
+					<div class="btn-group btns-filelist" style="display: none">
+						<!-- <div class="item"><span id="tbBack" class="y-btn-back y-btn-back-disable back" data-cn="back" title="返回上级目录">返回</span></div> -->
+						<div class="item">
+							<span id="tbUpload" class="y-btn y-btn-blue upload" data-cn="upload"><span class="label">上传</span></span>
+						</div>
+						<div class="item">
+							<span id="tbNew" class="y-btn y-btn-gray new" data-cn="new"><span class="label">新建文件夹</span></span><span id="tbOffline" class="y-btn y-btn-gray offline" data-cn="offline"><span class="label">离线下载</span></span>
+						</div>
+						<div class="item">
+							<span id="tbDl" class="y-btn y-btn-gray dl" data-cn="dl"><span class="label">下载</span></span><span id="tbPackDl" class="y-btn y-btn-gray pack-dl" data-cn="pack-dl"><span class="label">下载</span></span><span id="tbDel" class="y-btn y-btn-gray del" data-cn="del"><span class="label">删除</span></span><span id="tbLink" class="y-btn y-btn-gray link" data-cn="link"><span class="label">分享</span></span><span id="tbLinkBatch" class="y-btn y-btn-gray link-batch" data-cn="link-batch"><span class="label">分享</span></span><span id="tbMore" class="y-btn y-btn-gray more y-btn-more" data-cn="more"><span class="label">更多</span></span>
+						</div>
+					</div>
+					<div class="btn-group btns-sfilelist btns-toolbar" style="display: none">
+						<div class="item">
+							<span id="tbUpload2" class="y-btn y-btn-blue upload" data-cn="upload"><span class="label">上传</span></span>
+						</div>
+						<div class="item">
+							<span id="tbNew2" class="y-btn y-btn-gray new" data-cn="new"><span class="label">新建文件夹</span></span>
+						</div>
+						<div class="item">
+							<span id="tbDl2" class="y-btn y-btn-gray dl" data-cn="dl"><span class="label">下载</span></span><span id="tbPackDl2" class="y-btn y-btn-gray pack-dl" data-cn="pack-dl"><span class="label">下载</span></span><span id="tbDel2" class="y-btn y-btn-gray del" data-cn="del"><span class="label">删除</span></span><span id="tdMoveOut" class="y-btn y-btn-gray moveoutsfile" data-cn="moveoutsfile"><span class="label">转出文件保险箱</span></span><span id="tbMore2" class="y-btn y-btn-gray more y-btn-more" data-cn="more"><span class="label">更多</span></span>
+						</div>
+						<div class="item">
+							<span id="tbLockSfile" class="y-btn y-btn-gray locksfile" data-cn="locksfile"><span class="label">立即锁上保险箱</span></span>
+						</div>
+					</div>
+					<div class="btn-group btns-link" style="display: none">
+						<div class="item">
+							<span id="tbLinkView" class="y-btn y-btn-gray y-btn-disable link-view" data-cn="link-view"><span class="label">查看分享链接</span></span><span id="tbLinkDel" class="y-btn y-btn-gray y-btn-disable link-del" data-cn="link-del"><span class="label">取消分享</span></span><span id="tbExtractOn" class="y-btn y-btn-gray extract-on" data-cn="extract-on"><span class="label">启用提取码</span></span><span id="tbExtractOff" class="y-btn y-btn-gray extract-off" data-cn="extract-off"><span class="label">取消提取码</span></span><span id="tbLinkCopy" class="y-btn y-btn-gray y-btn-disable link-copy" data-cn="link-copy"><span class="label">复制分享链接</span></span>
+						</div><!--  <p class="share-top-tip">为配合有关部门的“扫黄打非”净网行动，云盘分享功能临时调整。<a href="http://bbs.360safe.com/thread-4209633-1-1.html" target="_blank">查看详情</a><span class="close" onclick="W('.share-top-tip').hide();">&#215;</span></p> -->
+					</div>
+					<div class="btn-group btns-recycle" style="display: none">
+						<div class="item">
+							<span id="tbRestore" class="y-btn y-btn-gray y-btn-disable restore show" data-cn="restore"><span class="label">还原文件</span></span><span id="tbDisdel" class="y-btn y-btn-gray y-btn-disable diskdel show" data-cn="diskdel" style="width: 60px;"><span class="label">删除</span></span>
+						</div>
+						<div class="item">
+							<span id="tbClearall" class="y-btn y-btn-gray clearall show" data-cn="clearall"><span class="label">清空回收站</span></span><span id="tbOpenPassword" class="y-btn y-btn-gray openpass" data-cn="openpass"><span class="label">对回收站启用云盘安全密码</span></span><span id="tbOpenPasswordDone" class="y-btn y-btn-gray openpassdone" data-cn="openpassdone"><span class="label">回收站云盘安全密码启用中</span></span>
+						</div>
+					</div>
+					<div class="btn-group btns-hisfile" style="display: none">
+						<div class="item">
+							<span id="tbHisReFile" title="还原到选中版本" class="y-btn y-btn-gray his-restore" data-cn="his-view"><span class="label">穿越到选中时光号</span></span><span id="tbHisView" class="y-btn y-btn-gray his-view" data-cn="his-view"><span class="label">在线查看</span></span><a id="tbHisViewPic" target="_blank" class="y-btn y-btn-gray his-view" href="###" style="display:none"><span class="label">在线查看</span></a><span id="tbHisDl" class="y-btn y-btn-gray his-dl" data-cn="his-dl"><span class="label">下载</span></span>
+						</div>
+					</div>
+					<div class="mini-upload" title="上传文件"></div>
+					<div class="display-mode">
+						<a id="tbText" title="切换到列表视图" href="###" onclick="return false;" data-cn="text" class="cmd text">列表视图</a><a id="tbPic" title="切换到大图视图" href="###" onclick="return false;" data-cn="pic" class="cmd pic">大图标视图</a>
+					</div>
+					<div class="sort">
+						<h2>
+							<a href="###" onclick="return false;" class="name asc" data-field="file_name" data-order="asc">名称</a>
+						</h2>
+						<ul>
+							<li>
+								<a href="###" onclick="return false;" class="name asc" data-field="name" data-order="asc">文件名</a>
+							</li>
+							<li>
+								<a href="###" onclick="return false;" class="fsize asc" data-field="fsize" data-order="asc">大小</a>
+							</li>
+							<li>
+								<a href="###" onclick="return false;" class="new-upload desc" data-field="mtime" data-order="desc">最近上传</a>
+							</li>
+							<li>
+								<a href="###" onclick="return false;" class="fmtime desc" data-field="fmtime" data-order="desc">修改日期</a>
+							</li>
+							<li>
+								<a href="###" onclick="return false;" class="del-date desc" data-field="mtime" data-order="desc">删除日期</a>
+							</li>
+							<li>
+								<a href="###" onclick="return false;" class="share-date desc" data-field="mtime" data-order="desc">日期</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+    <head> 
+        <!--beego会首先解析TplNames指定的文件，获取内容赋值给header，然后最后渲染本html文件-->
+        {{template "header"}} <!--导航栏设计，固定在顶端-->
+        <title>首页 - 我的 LKJ 云盘</title>
+        <style type="text/css">
+*,body {
+        margin: 0px;
+        padding: 0px;
+        }
+
+        body {
+        margin: 0px;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: 14px;
+        line-height: 20px;
+        background-color: #fff;
+        padding-top: 70px;
+        }
+
+        header,
+        footer {
+        width: 960px;
+        margin-left: auto;
+        margin-right: auto;
+        }
+
+        .logo {
+        background-image: url(static/img/logo.jpg);
+        background-repeat: no-repeat;
+        -webkit-background-size: 100px 100px;
+        background-size: 100px 100px;
+        background-position: center 0px;
+        text-align: center;
+        font-size: 42px;
+        padding: 120px 0 70px;
+        font-weight: normal;
+        text-shadow: 0px 1px 2px #ddd;
+        }
+
+        header {
+        padding: 100px 0;
+        }
+
+        footer {
+        line-height: 1.8;
+        text-align: center;
+        padding: 30px 0;
+        color: #999;
+        }
+
+        .description {
+        text-align: center;
+        font-size: 16px;
+        }
+
+        a {
+        color: #444;
+        text-decoration: none;
+        }
+
+        .backdrop {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        box-shadow: inset 0px 200px 800px #ddd;
+        /*五个参数：
+        第1个长度值用来设置对象的阴影水平偏移值。可以为负值
+        第2个长度值用来设置对象的阴影垂直偏移值。可以为负值
+        如果提供了第3个长度值则用来设置对象的阴影模糊值。不允许负值
+        如果提供了第4个长度值则用来设置对象的阴影外延值。不允许负值
+        设置对象的阴影的颜色*/
+        z-index: -1;
+        top: 0px;
+        left: 0px;
+        }
+        </style>
+    </head>
+    <body>
+        <div class="navbar navbar-default navbar-fixed-top navbar-inverse">
+            <div class="container">
+                <!--导航栏内容，由于有会员登录与退出的变化，增加“.”可以实时响应变化-->
+                {{template "navbar" .}}
+            </div>
+        </div><!-- <div class="container" style="height:100px;width:;background:white;margin:100px auto">
+      </div>  -->
+        <div class="container">
+            <div class="page-header">
+                <!-- <h1>欢迎来到云存储系统~~~</h1>
+            <h6 class="text-muted">系统开通时间为：2015 年 4 月 1 日 12:21。</h6>
+            <p>
+              本系统基于最新的存储系统架构————对象存储系统
+            </p>   -->
+                <header>
+                    <h1 class="logo">
+                        Welcome to Object-Based Storage System
+                    </h1>
+                    <div class="description">
+                        In this mass storage system, you can upload &amp; downlaod your personal file.Just enjoy your time.
+                    </div>
+                </header>
+                <footer>
+                    <div class="author">
+                        Official website: <a href="http://{{.Website}}">{{.Website}}</a> / Contact me: <a class="email" href="mailto:{{.Email}}">{{.Email}}</a>
+                    </div>
+                </footer>
+                <div class="backdrop"></div>
+            </div>
+        </div><script type="text/javascript" src="http://cdn.staticfile.org/jquery/2.1.1-rc2/jquery.min.map">
+</script><script type="text/javascript" src="static/js/bootstrap.min.js">
+</script>
+    </body>
+</html>
