@@ -47,4 +47,5 @@ A cloud storage web app.
  * 利用Cookies实现自动登陆功能
  * 页面实时显示文件或文件夹大小、最后修改时间
 
-## Screen
+## Screen Shot
+![](https://github.com/rical730/CloudStorage/blob/master/screenshot/main.png)
